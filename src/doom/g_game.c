@@ -281,6 +281,7 @@ static int G_NextWeapon(int direction)
     return weapon_order_table[i].weapon_num;
 }
 
+
 //
 // G_BuildTiccmd
 // Builds a ticcmd from all of the available inputs
