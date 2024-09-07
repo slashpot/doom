@@ -16,6 +16,7 @@
 //
 
 #include <emscripten/websocket.h>
+#include <emscripten.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1446,6 +1447,10 @@ void G_DoSaveGame(void)
                     recovery_savegame_file);
         }
     }
+
+    EM_ASM(
+        alert('save game !');
+    );
 
     savegame_error = false;
 
