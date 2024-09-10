@@ -1448,9 +1448,7 @@ void G_DoSaveGame(void)
         }
     }
 
-    EM_ASM(
-        alert('save game !');
-    );
+
 
     savegame_error = false;
 
@@ -1489,10 +1487,20 @@ void G_DoSaveGame(void)
     remove(savegame_file);
     rename(temp_savegame_file, savegame_file);
 
+    EM_ASM({
+        console.log(`desc: ${UTF8ToString($0)}`);
+    }, savedescription);
+
     gameaction = ga_nothing;
     M_StringCopy(savedescription, "", sizeof(savedescription));
 
     players[consoleplayer].message = DEH_String(GGSAVED);
+
+
+
+     EM_ASM({
+        console.log(`file: ${UTF8ToString($0)}`);
+    }, savegame_file);
 
     // draw the pattern into the back screen
     R_FillBackScreen();
